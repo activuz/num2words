@@ -119,8 +119,8 @@ class Num2WordsUZCardinalTest(TestCase):
     # --- yuzliklar ---
     def test_hundreds(self):
         self.assertEqual(self.n.to_cardinal(100), "yuz")
-        self.assertEqual(self.n.to_cardinal(101), "yuz bir")
-        self.assertEqual(self.n.to_cardinal(111), "yuz o'n bir")
+        self.assertEqual(self.n.to_cardinal(101), "bir yuz bir")
+        self.assertEqual(self.n.to_cardinal(111), "bir yuz o'n bir")
         self.assertEqual(self.n.to_cardinal(200), "ikki yuz")
         self.assertEqual(self.n.to_cardinal(500), "besh yuz")
         self.assertEqual(
@@ -130,21 +130,21 @@ class Num2WordsUZCardinalTest(TestCase):
 
     # --- mingliklar ---
     def test_thousands(self):
-        self.assertEqual(self.n.to_cardinal(1000),  "bir ming")
+        self.assertEqual(self.n.to_cardinal(1000),  "ming")
         self.assertEqual(self.n.to_cardinal(1001),  "bir ming bir")
-        self.assertEqual(self.n.to_cardinal(1100),  "bir ming yuz")
+        self.assertEqual(self.n.to_cardinal(1100),  "bir ming bir yuz")
         self.assertEqual(
             self.n.to_cardinal(1999),
             "bir ming to'qqiz yuz to'qson to'qqiz"
         )
         self.assertEqual(self.n.to_cardinal(2000),   "ikki ming")
         self.assertEqual(self.n.to_cardinal(10000),  "o'n ming")
-        self.assertEqual(self.n.to_cardinal(100000), "yuz ming")
+        self.assertEqual(self.n.to_cardinal(100000), "bir yuz ming")
 
     # --- millionlar va undan katta ---
     def test_large_numbers(self):
-        self.assertEqual(self.n.to_cardinal(1_000_000),     "bir million")
-        self.assertEqual(self.n.to_cardinal(1_000_000_000), "bir milliard")
+        self.assertEqual(self.n.to_cardinal(1_000_000),     "million")
+        self.assertEqual(self.n.to_cardinal(1_000_000_000), "milliard")
         self.assertEqual(
             self.n.to_cardinal(1_234_567),
             "bir million ikki yuz o'ttiz to'rt ming besh yuz oltmish yetti"
@@ -152,10 +152,10 @@ class Num2WordsUZCardinalTest(TestCase):
 
     # --- o'nli kasrlar ---
     def test_decimal(self):
-        self.assertEqual(self.n.to_cardinal(3.14),  "uch vergul o'n to'rt")
-        self.assertEqual(self.n.to_cardinal(0.5),   "nol vergul besh")
-        self.assertEqual(self.n.to_cardinal(0.05),  "nol vergul nol besh")
-        self.assertEqual(self.n.to_cardinal(10.001),"o'n vergul nol nol bir")
+        self.assertEqual(self.n.to_cardinal(3.14),  "uch butun o'n to'rt")
+        self.assertEqual(self.n.to_cardinal(0.5),   "nol butun besh")
+        self.assertEqual(self.n.to_cardinal(0.05),  "nol butun nol besh")
+        self.assertEqual(self.n.to_cardinal(10.001),"o'n butun nol nol bir")
 
 
 class Num2WordsUZNegativeTest(TestCase):
@@ -208,11 +208,11 @@ class Num2WordsUZOrdinalTest(TestCase):
         self.assertEqual(self.n.to_ordinal(15), "o'n beshinchi")
         self.assertEqual(self.n.to_ordinal(19), "o'n to'qqizinchi")
         self.assertEqual(self.n.to_ordinal(21), "yigirma birinchi")
-        self.assertEqual(self.n.to_ordinal(101),"yuz birinchi")
+        self.assertEqual(self.n.to_ordinal(101),"bir yuz birinchi")
 
     def test_ordinal_thousands(self):
-        self.assertEqual(self.n.to_ordinal(1000),    "bir minginchi")
-        self.assertEqual(self.n.to_ordinal(1_000_000),"bir millioninchi")
+        self.assertEqual(self.n.to_ordinal(1000),    "minginchi")
+        self.assertEqual(self.n.to_ordinal(1_000_000),"millioninchi")
 
 
 class Num2WordsUZCurrencyTest(TestCase):
@@ -271,7 +271,7 @@ class Num2WordsUZCurrencyTest(TestCase):
         # 158.3 → 158 so'm, 30 tiyin
         self.assertEqual(
             self.n.to_currency(158.30, currency='UZS'),
-            "yuz ellik sakkiz so'm, o'ttiz tiyin"
+            "bir yuz ellik sakkiz so'm, o'ttiz tiyin"
         )
         # 0.50 → nol so'm, ellik tiyin
         self.assertEqual(

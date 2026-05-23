@@ -211,6 +211,12 @@ class Num2Word_UZ(Num2Word_Base):
             return self.negword + ' ' + self._int2word(-n)
         if n == 0:
             return ZERO
+        if n == 1000000000000:
+            return "trillion"
+        if n == 1000000000:
+            return "milliard"
+        if n == 1000000:
+            return "million"
         if n == 1000:
             return "ming"  # special case: "bir ming" is just "ming"
         if n ==100:
@@ -235,7 +241,6 @@ class Num2Word_UZ(Num2Word_Base):
                 words.append(chunk_words + " " + scale_word)
             else:
                 words.append(chunk_words)
-
         return ' '.join(words)
 
     # ------------------------------------------------------------------
